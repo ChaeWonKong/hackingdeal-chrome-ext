@@ -1,0 +1,16 @@
+{
+  "name": "React Chrome EXT",
+  "description": "Kong Chae Won!",
+  "version": "1.0",
+  "manifest_version": 2,
+  "background": {
+    "page": "index.html"
+  },
+  "web_accessible_resources": ["main.bundle.js"],
+  "permissions": ["storage", "activeTab"],
+  "browser_action": {
+    "default_title": "React Chrome Extension Example",
+    "default_popup": "index.html"
+  },
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src ws://localhost:3000 http://localhost:3000 https://localhost:3000; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
+}

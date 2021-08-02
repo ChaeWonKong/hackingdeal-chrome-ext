@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 export const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -8,6 +8,8 @@ export const GlobalStyles = createGlobalStyle`
     }
     body{
         background-color: #ffffff;
+        width: 200px;
+        height: 200px;
     }
     a {
         text-decoration: none;
