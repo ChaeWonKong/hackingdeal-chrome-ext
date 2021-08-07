@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import "antd/dist/antd.css";
 
 export const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -8,12 +7,19 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     body{
-        background-color: #ffffff;
-        width: 200px;
-        height: 200px;
+        background-color: #fff;
+        width: 300px;
+        height: 300px;
     }
     a {
         text-decoration: none;
         cursor: pointer;
+    }
+    button {
+        border: none;
+        cursor: pointer;
+    }
+    textarea:focus, input:focus{
+        outline: none;
     }
 `;

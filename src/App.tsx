@@ -1,17 +1,20 @@
-import React from "react";
-import { createShorthandPropertyAssignment } from "typescript";
+import React, { useState } from "react";
+import Button from "./components/button";
+import TextField from "./components/text-field";
 
 export default function App() {
-  // const onClick = () => {
-  //   /* @ts-ignore */
-  //   chrome.tabs.executeScript({
-  //     file: "contentScript.js",
-  //   });
-  // };
+  const [price, setPrice] = useState(0);
 
   return (
     <div>
-      <button onClick={() => alert("변환")}>원화 변환</button>
+      <TextField
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPrice(parseFloat(e.target.value))
+        }
+        validity={!isNaN(price)}
+        errorMessage="숫자를 입력해주세요."
+      />
+      <Button>원화 변환</Button>
     </div>
   );
 }

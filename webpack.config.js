@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
         {
           test: /\.pug$/,
           include: pathJoin("public"),
-          loaders: ["pug-loader"],
+          use: ["pug-loader"],
         },
         {
           test: /\.(ts|tsx)?$/,
@@ -61,6 +61,10 @@ module.exports = (env, argv) => {
               loader: "ts-loader",
             },
           ],
+        },
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
@@ -109,10 +113,10 @@ module.exports = (env, argv) => {
         test: new RegExp(
           `\\.(${["js", "ts", "css", "pcss", "html"].join("|")})$`
         ),
-        filename: "[path].gz[query]",
+        filename: "[name].gz[query]",
         algorithm: "gzip",
         threshold: 8192,
-        cache: true,
+        // cache: true,
       }),
       new HtmlWebpackPlugin({
         template: pathJoin("public/index.pug"),
