@@ -4,7 +4,8 @@
 ![typescript](https://img.shields.io/badge/Langualge-typescript-blue)
 ![style](https://img.shields.io/badge/Style-styled--components-yellow)
 
-Amazon의 제품 가격을 환율을 고려해 한국 원화로 자동 변환해주는 크롬 익스텐션 앱.
+- ~~Amazon의 제품 가격을 환율을 고려해 한국 원화로 자동 변환해주는 크롬 익스텐션 앱.~~
+- Naver 쇼핑 가격 조회 시 배송비를 포함한 Final Price를 보여주는 앱
 
 ## TODO
 

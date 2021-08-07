@@ -17,3 +17,27 @@ priceArray.map((el) => {
     ).toLocaleString()}</span>`;
   }
 });
+
+/*
+'span[class^="price_num_"]'
+
+price_num
+
+ */
+
+// parce shipping cost as number type from HTML
+const getShippingCost = () => {
+// 조건부 무료 배송도 고려할 것
+};
+
+// parce price as number type from HTML
+const getPrice = () => {};
+
+// If there is shipping cost, set final price with shipping cost
+const setFinalPriceWithShippingCost = () => {
+  // get shipping cost
+  // if not shipping cost, return
+  // get price
+  // add shipping cost to price
+  // set HTML with final price
+};

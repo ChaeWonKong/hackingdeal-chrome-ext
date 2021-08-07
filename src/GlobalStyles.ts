@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "antd/dist/antd.css";
 
 export const GlobalStyles = createGlobalStyle`
     ${reset}
