@@ -13,9 +13,9 @@ export default function TextField({
   errorMessage,
 }: IProps) {
   return (
-    <>
+    <S.TextFieldWrapper>
       <S.TextField onChange={onChange} validity={validity} />
       {!validity && <S.TextFieldError>{errorMessage}</S.TextFieldError>}
-    </>
+    </S.TextFieldWrapper>
   );
 }
