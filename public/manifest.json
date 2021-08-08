@@ -1,6 +1,6 @@
 {
-  "name": "React Chrome EXT",
-  "description": "Kong Chae Won!",
+  "name": "해외직구계산기",
+  "description": "해외직구할 때 편하게 배송대행지 비용까지 계산해서 볼 수 있는 크롬 익스텐션입니다.",
   "version": "1.0",
   "manifest_version": 2,
   "background": {
@@ -9,8 +9,13 @@
   "web_accessible_resources": ["main.bundle.js"],
   "permissions": ["storage", "activeTab"],
   "browser_action": {
-    "default_title": "React Chrome Extension Example",
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src ws://localhost:3000 http://localhost:3000 https://localhost:3000; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
 }

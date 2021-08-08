@@ -14,7 +14,9 @@ export interface SelectOption {
 export default function Select({ selectOptions, onChange }: IProps) {
   const renderOptions = () =>
     selectOptions.map(({ value, text }) => (
-      <option value={value || text}>{text}</option>
+      <option key={`key-${text}`} value={value || text}>
+        {text}
+      </option>
     ));
   return <S.Select onChange={onChange}>{renderOptions()}</S.Select>;
 }
