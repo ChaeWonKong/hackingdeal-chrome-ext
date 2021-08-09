@@ -5,6 +5,7 @@ import TextField from "./components/text-field";
 import Form from "./components/form";
 import Label from "./components/label";
 import Select from "./components/select";
+import { calcVolWeight } from "./utils/weight";
 
 enum WEIGHT {
   POUND = "파운드(lb)",
@@ -15,23 +16,33 @@ const weightOptions = [{ text: WEIGHT.POUND }, { text: WEIGHT.OZ }];
 
 export default function App() {
   const [initialPrice, setInitialPrice] = useState(0);
-  const [volume, setVolume] = useState(1);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [length, setLength] = useState(0);
 
   // 무게는 lb 기준으로 통일한다.
   const [pounds, setPounds] = useState(0);
+
+  /**
+   * Set weight of maximum type(either weight or volume weight)
+   * @param w weight in pounds(lb)
+   * @returns maximum of weight and volume weight
+   */
+  const setWeightWithMaxType = (w: number) =>
+    setPounds(Math.max(w, calcVolWeight(width, height, length)));
+
   const setWeightInPounds = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
       case WEIGHT.POUND:
         return;
       // ounce는 pound로 변환해 저장한다.
       case WEIGHT.OZ:
-        setPounds(pounds / 16);
+        setWeightWithMaxType(pounds / 16);
         return;
       default:
         return;
     }
   };
-  console.log(pounds);
 
   return (
     <Wrapper>
@@ -50,25 +61,25 @@ export default function App() {
         <Label>부피계산</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setVolume(volume * parseFloat(e.target.value))
+            setWidth(parseFloat(e.target.value))
           }
-          validity={!isNaN(volume)}
+          validity={!isNaN(width)}
           errorMessage="숫자만"
         />
         <Label>X</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setVolume(volume * parseFloat(e.target.value))
+            setHeight(parseFloat(e.target.value))
           }
-          validity={!isNaN(volume)}
+          validity={!isNaN(height)}
           errorMessage="숫자만"
         />
         <Label>X</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setVolume(volume * parseFloat(e.target.value))
+            setLength(parseFloat(e.target.value))
           }
-          validity={!isNaN(volume)}
+          validity={!isNaN(length)}
           errorMessage="숫자만"
         />
         <Label>inch</Label>
@@ -77,15 +88,17 @@ export default function App() {
         <Label>무게</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPounds(parseFloat(e.target.value))
+            setWeightWithMaxType(parseFloat(e.target.value))
           }
-          validity={!isNaN(volume)}
+          validity={!isNaN(pounds)}
           errorMessage="숫자만 입력해주세요."
         />
 
         <Select selectOptions={weightOptions} onChange={setWeightInPounds} />
       </Form>
-      <Button>배송대행지 이용시 총 가격 계산</Button>
+      <Button onClick={() => alert(`${pounds} 파운드(lb)`)}>
+        배송대행지 이용시 총 가격 계산
+      </Button>
     </Wrapper>
   );
 }
