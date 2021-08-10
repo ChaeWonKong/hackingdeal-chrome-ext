@@ -5,7 +5,7 @@ import TextField from "./components/text-field";
 import Form from "./components/form";
 import Label from "./components/label";
 import Select from "./components/select";
-import { calcVolWeight } from "./utils/weight";
+import { calcVolWeight, convertOuncesToPounds } from "./utils/weight";
 
 enum WEIGHT {
   POUND = "파운드(lb)",
@@ -37,7 +37,7 @@ export default function App() {
         return;
       // ounce는 pound로 변환해 저장한다.
       case WEIGHT.OZ:
-        setWeightWithMaxType(pounds / 16);
+        setWeightWithMaxType(convertOuncesToPounds(pounds));
         return;
       default:
         return;
