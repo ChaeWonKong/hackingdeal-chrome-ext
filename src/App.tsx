@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Wrapper from "./components/wrapper";
 import Button from "./components/button";
 import TextField from "./components/text-field";
-import Form from "./components/form";
+import TextFieldWrapper from "./components/text-field-wrapper";
 import Label from "./components/label";
 import Select from "./components/select";
-import { calcVolWeight, convertOuncesToPounds } from "./utils/weight";
+import { convertOuncesToPounds } from "./utils/weight";
+import { calcOhmyzipShippingCost } from "./utils/shippingCost";
+import FinalPrice from "./components/final-price";
 
 enum WEIGHT {
   POUND = "파운드(lb)",
@@ -23,30 +25,31 @@ export default function App() {
   // 무게는 lb 기준으로 통일한다.
   const [pounds, setPounds] = useState(0);
 
-  /**
-   * Set weight of maximum type(either weight or volume weight)
-   * @param w weight in pounds(lb)
-   * @returns maximum of weight and volume weight
-   */
-  const setWeightWithMaxType = (w: number) =>
-    setPounds(Math.max(w, calcVolWeight(width, height, length)));
-
   const setWeightInPounds = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
       case WEIGHT.POUND:
         return;
       // ounce는 pound로 변환해 저장한다.
       case WEIGHT.OZ:
-        setWeightWithMaxType(convertOuncesToPounds(pounds));
+        convertOuncesToPounds(pounds);
         return;
       default:
         return;
     }
   };
 
+  const [finalPrice, setFinalPrice] = useState(0);
+
+  const calcFinalPrice = () => {
+    // fp  = final price
+    const fp =
+      initialPrice + calcOhmyzipShippingCost(width, height, length, pounds);
+    setFinalPrice(fp);
+  };
+
   return (
     <Wrapper>
-      <Form>
+      <TextFieldWrapper>
         <Label>가격</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -56,8 +59,8 @@ export default function App() {
           errorMessage="숫자를 입력해주세요."
         />
         <Label>USD($)</Label>
-      </Form>
-      <Form>
+      </TextFieldWrapper>
+      <TextFieldWrapper>
         <Label>부피계산</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -83,22 +86,23 @@ export default function App() {
           errorMessage="숫자만"
         />
         <Label>inch</Label>
-      </Form>
-      <Form>
+      </TextFieldWrapper>
+      <TextFieldWrapper>
         <Label>무게</Label>
         <TextField
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setWeightWithMaxType(parseFloat(e.target.value))
+            setPounds(parseFloat(e.target.value))
           }
           validity={!isNaN(pounds)}
           errorMessage="숫자만 입력해주세요."
         />
 
         <Select selectOptions={weightOptions} onChange={setWeightInPounds} />
-      </Form>
-      <Button onClick={() => alert(`${pounds} 파운드(lb)`)}>
+      </TextFieldWrapper>
+      <Button onClick={() => calcFinalPrice()}>
         배송대행지 이용시 총 가격 계산
       </Button>
+      {finalPrice !== 0 && <FinalPrice>{finalPrice}</FinalPrice>}
     </Wrapper>
   );
 }
