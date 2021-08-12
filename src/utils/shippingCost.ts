@@ -1,3 +1,6 @@
+import { calcVolWeight } from "./weight";
+import { roundNumberToGivenDecimalPlaces } from "./math";
+
 /**
  * Calculate Oh My Zip Shipping Price
  * @param w width in inches
@@ -12,7 +15,11 @@ export const calcOhmyzipShippingCost = (
   l: number,
   pounds: number
 ) => {
+  // Base cost is $5
   const finalPrice = 5;
+
+  // Use Bigger one; Volume weight and actual weight
+  const finalWeight = Math.max(calcVolWeight(w, h, l), pounds);
 
   // if one side is bigger than equal 50inch or sum of three sides is bigger than equal 70inches,
   // add $5 additional cost
@@ -20,5 +27,8 @@ export const calcOhmyzipShippingCost = (
     finalPrice + 5;
   }
 
-  return finalPrice + 1.5 * (pounds - 1);
+  return roundNumberToGivenDecimalPlaces(
+    finalPrice + 1.5 * (finalWeight - 1),
+    2
+  );
 };
