@@ -7,7 +7,7 @@ export const ButtonBox = styled.button`
   margin: 16px 0;
   padding: 16px 24px;
   border-radius: 8px;
-  width: auto;
+  width: 100%;
   font-size: 16px;
   color: #3a3a3a;
   font-weight: 400;

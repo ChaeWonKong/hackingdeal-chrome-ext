@@ -8,8 +8,8 @@ export const GlobalStyles = createGlobalStyle`
     }
     body{
         background-color: #fff;
-        width: 300px;
-        height: 300px;
+        width: 360px;
+        height: 408px;
     }
     a {
         text-decoration: none;
