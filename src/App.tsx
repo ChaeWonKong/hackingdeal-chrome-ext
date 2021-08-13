@@ -8,6 +8,7 @@ import Select from "./components/select";
 import { convertOuncesToPounds } from "./utils/weight";
 import { calcOhmyzipShippingCost } from "./utils/shippingCost";
 import FinalPrice from "./components/final-price";
+import Title from "./components/title";
 
 enum WEIGHT {
   POUND = "파운드(lb)",
@@ -49,6 +50,7 @@ export default function App() {
 
   return (
     <Wrapper>
+      <Title>해외직구 계산기</Title>
       <TextFieldWrapper>
         <Label>가격</Label>
         <TextField

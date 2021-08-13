@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     body{
         background-color: #fff;
         width: 360px;
-        height: 408px;
+        height: 468px;
     }
     a {
         text-decoration: none;

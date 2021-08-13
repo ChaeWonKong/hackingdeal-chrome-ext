@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.section`
   display: flex;
   justify-content: space-between;
-  margin: 16px 0;
+  margin: 24px 0 8px;
 `;
 
 export const TextLabel = styled.h2`
